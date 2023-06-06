@@ -17,9 +17,9 @@ plugins {
     id 'java'
 
     // For Maven and Maven Central support
-    id 'maven-publish'
-    id 'com.bmuschko.nexus' version '2.3.1'
-    id 'io.codearte.nexus-staging' version '0.11.0'
+    //id 'maven-publish'
+    //id 'com.bmuschko.nexus' version '2.3.1'
+    //id 'io.codearte.nexus-staging' version '0.11.0'
 
     // For code coverage reports
     id 'jacoco'
@@ -105,8 +105,8 @@ test {
 
 jacocoTestReport {
     reports {
-        xml.enabled true
-        html.enabled false
+        xml.required = true
+        html.required = false
     }
 }
 jacocoTestReport.dependsOn check
@@ -114,60 +114,60 @@ jacocoTestReport.dependsOn check
 //
 // START publishing
 //
-modifyPom {
-    project {
-        name = 'alpaca-java'
-        description = 'Java API for Alpaca'
-        url = 'https://github.com/Petersoj/alpaca-java'
-        inceptionYear = '2018'
+// modifyPom {
+//     project {
+//         name = 'alpaca-java'
+//         description = 'Java API for Alpaca'
+//         url = 'https://github.com/Petersoj/alpaca-java'
+//         inceptionYear = '2018'
 
-        licenses {
-            license {
-                name = 'MIT License'
-                url = 'https://opensource.org/licenses/MIT'
-            }
-        }
+//         licenses {
+//             license {
+//                 name = 'MIT License'
+//                 url = 'https://opensource.org/licenses/MIT'
+//             }
+//         }
 
-        developers {
-            developer {
-                id = 'Petersoj'
-                name = 'Jacob Peterson'
-            }
+//         developers {
+//             developer {
+//                 id = 'Petersoj'
+//                 name = 'Jacob Peterson'
+//             }
 
-            developer {
-                id = 'mainstringargs'
-                name = 'main(String[] args)'
-            }
-        }
+//             developer {
+//                 id = 'mainstringargs'
+//                 name = 'main(String[] args)'
+//             }
+//         }
 
-        scm {
-            url = "https://github.com/Petersoj/alpaca-java.git"
-            connection = "scm:git:https://github.com/Petersoj/alpaca-java.git"
-            developerConnection = "scm:git:git@github.com/Petersoj/alpaca-java.git"
-        }
-    }
-}
+//         scm {
+//             url = "https://github.com/Petersoj/alpaca-java.git"
+//             connection = "scm:git:https://github.com/Petersoj/alpaca-java.git"
+//             developerConnection = "scm:git:git@github.com/Petersoj/alpaca-java.git"
+//         }
+//     }
+// }
 
-extraArchive {
-    sources = true
-    tests = true
-    javadoc = true
-}
+// extraArchive {
+//     sources = true
+//     tests = true
+//     javadoc = true
+// }
 
-nexus {
-    sign = true
-    repositoryUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
-    snapshotRepositoryUrl = 'https://oss.sonatype.org/content/repositories/snapshots/'
-}
+// nexus {
+//     sign = true
+//     repositoryUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
+//     snapshotRepositoryUrl = 'https://oss.sonatype.org/content/repositories/snapshots/'
+// }
 
-nexusStaging {
-    packageGroup = "net.jacobpeterson"
-}
+// nexusStaging {
+//     packageGroup = "net.jacobpeterson"
+// }
 
-// Used to prevent accidental publication of Alpaca keys
-processResources {
-    exclude('alpaca.properties')
-}
+// // Used to prevent accidental publication of Alpaca keys
+// processResources {
+//     exclude('alpaca.properties')
+// }
 
 //
 // END publishing
